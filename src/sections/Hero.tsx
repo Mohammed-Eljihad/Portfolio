@@ -98,7 +98,7 @@ function Hero() {
                   href={social.href}
                   key={i}
                   target="_blank"
-                  className="p-2 rounded-full glass hover: bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
                   <social.icon />
                 </a>
