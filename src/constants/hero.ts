@@ -1,38 +1,38 @@
 import { type LucideIcon, Github, Linkedin, Twitter } from "lucide-react";
 
 type social = {
-    icon: LucideIcon;
-    href: string;
-}
+  icon: LucideIcon;
+  href: string;
+};
 export const socials: social[] = [
-    {
+  {
     icon: Github,
-    href: "#"
-    },
-    {
+    href: "https://github.com/Mohammed-Eljihad",
+  },
+  {
     icon: Linkedin,
-    href: "#"
-    },
-    {
+    href: "",
+  },
+  {
     icon: Twitter,
-    href: "#"
-    },
+    href: "#",
+  },
 ];
 
 export const skills: string[] = [
-    "Flutter",
-    "Bloc",
-    "Dio",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "GraphQL",
-    "PostgreSQL",
-    "MongoDB",
-    "Docker",
-    "Tailwind CSS",
-    "Figma",
-    "Git",
-    "GitHub Actions",
+  "Flutter",
+  "Bloc",
+  "Dio",
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "GraphQL",
+  "PostgreSQL",
+  "MongoDB",
+  "Docker",
+  "Tailwind CSS",
+  "Figma",
+  "Git",
+  "GitHub Actions",
 ];

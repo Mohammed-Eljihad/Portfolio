@@ -97,6 +97,7 @@ function Hero() {
                 <a
                   href={social.href}
                   key={i}
+                  target="_blank"
                   className="p-2 rounded-full glass hover: bg-primary/10 hover:text-primary transition-all duration-300"
                 >
                   <social.icon />
@@ -118,7 +119,7 @@ function Hero() {
             <div className="relative z-10 max-w-md mx-auto">
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="/my-profile.png"
+                  src="/profile-photo.jpg"
                   alt="Mohammed Eljihad"
                   className="w-full aspect-4/5 object-cover rounded-2xl"
                 />
