@@ -1,35 +1,5 @@
-import { Section } from "@/shared/ui/section/Section";
-import { Code2, Lightbulb, Rocket, Users, type LucideIcon } from "lucide-react";
-type Highlights = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
-const highlights: Highlights[] = [
-  {
-    icon: Code2,
-    title: "Clean Code",
-    description:
-      "Writing maintainable, scalable code that stands the test of time.",
-  },
-  {
-    icon: Rocket,
-    title: "Performance",
-    description:
-      "Optimizing for speed and delivering lightning-fast user experiences.",
-  },
-  {
-    icon: Users,
-    title: "Collaboration",
-    description: "Working closely with teams to bring ideas to life.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description:
-      "Staying ahead with the latest technologies and best practices.",
-  },
-];
+import { Section } from "@/components/Section";
+import { highlights } from "@/constants/about";
 
 function About() {
   return (
@@ -39,17 +9,22 @@ function About() {
           {/* Left Column */}
           <div className="space-y-8">
             <div className="animate-fade-in">
-              <span className="text-secondary-foreground text-sm font-medium -tracking-wider uppercase">About Me</span>
+              <span className="text-secondary-foreground text-sm font-medium -tracking-wider uppercase">
+                About Me
+              </span>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secondary-foreground">
               Building the future,
-              <span className="font-serif italic font-normal text-white"> one component at a time.</span>
+              <span className="font-serif italic font-normal text-white">
+                {" "}
+                one component at a time.
+              </span>
             </h2>
 
             <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
               <p>
-                I'm a passionate software engineer with over 5 years of
+                I'm a passionate software engineer with over 2+ years of
                 experience crafting digital products that make a difference. My
                 journey started with a curiosity for how things work on the web,
                 and it has evolved into a deep expertise in modern frontend
@@ -83,13 +58,17 @@ function About() {
               <div
                 key={i}
                 className="glass rounded-2xl glow-border p-6 animate-fade-in"
-              style={{animationDelay: `${(i + 1) * 100}ms`}}>
+                style={{ animationDelay: `${(i + 1) * 100}ms` }}
+              >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
-                  <highlight.icon className="w-6h h-6 text-primary"/>
+                  <highlight.icon className="w-6h h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{highlight.title}</h3>
-                <p className="text-sm text-muted-foreground">{highlight.description}</p>
-                
+                <h3 className="text-lg font-semibold mb-2">
+                  {highlight.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {highlight.description}
+                </p>
               </div>
             ))}
           </div>

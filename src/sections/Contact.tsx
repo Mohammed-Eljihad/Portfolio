@@ -1,45 +1,12 @@
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { SectionHeader } from "@/shared/ui/headers/SectionHeader";
-import { Section } from "@/shared/ui/section/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { Section } from "@/components/Section";
 import emailjs from "@emailjs/browser";
-import { AlertCircle, CheckCircle, Mail, MapPin, Phone, Send, type LucideIcon } from "lucide-react";
+import { AlertCircle, CheckCircle, Send} from "lucide-react";
 import { useReducer, useState } from "react";
-
-class HandleFetching {
-  static readonly pending = "PENDING";
-  static readonly success = "SUCCESS";
-  static readonly error = "ERROR";
-}
-
-type ContactInfo = {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-  href: string;
-
-}[];
-
-const contactInfo: ContactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "pedro@example.com",
-    href: "mailto:pedro@example.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "San Francisco, CA",
-    href: "#",
-  },
-];
+import { HandleFetching } from "@/utils/handleFetching";
+import { contactInfo } from "@/constants/contact";
 
 
 type FormProps = {
@@ -53,8 +20,6 @@ type InitialSubmitStatus = {
   type: string ;
   payload?: string;
 }
-
-
 
 const  initialSubmitStatus: InitialSubmitStatus = {
   loading: false,

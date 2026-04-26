@@ -1,4 +1,11 @@
-import type { SectionHeaderProps } from "./section-header.types";
+
+type SectionHeaderProps = {
+    isCenter?: boolean;
+    spanTitle: string;
+    sectionTitle: string;
+    spanSectionTitle: string;
+    paragraph: string;
+};
 
 export const SectionHeader = ({
         isCenter,
