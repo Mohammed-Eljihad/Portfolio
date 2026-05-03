@@ -1,6 +1,10 @@
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  size?: "sm" | "default" | "lg";
-};
+import React from "react";
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    size?: "sm" | "default" | "lg";
+    href?: string;
+  };
 
 const BASE_CLASSES =
   "relative overflow-hidden rounded-full font-medium focus:outline-none focus-visible:ring-primary bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25";
@@ -14,17 +18,29 @@ const SIZE_CLASSES = {
 export const Button = ({
   className = "",
   size = "default",
-  onClick,
+  href,
   children,
   ...props
 }: ButtonProps) => {
   const classes = `${BASE_CLASSES} ${SIZE_CLASSES[size]} ${className}`;
 
+  const content = (
+    <span className="relative flex items-center justify-center gap-2">
+      {children}
+    </span>
+  );
+
+  if (href) {
+    return (
+      <a href={href} className={classes} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {content}
+      </a>
+    );
+  }
+
   return (
-    <button className={classes} {...props} onClick={onClick}>
-      <span className="relative flex items-center justify-center gap-2">
-        {children}
-      </span>
+    <button className={classes} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {content}
     </button>
   );
 };

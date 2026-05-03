@@ -3,10 +3,13 @@ import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
 import { socials, skills } from "@/constants/hero";
-import { ArrowRight, ChevronDown, Download } from "lucide-react";
-import { useRef } from "react";
+import { ArrowRight, ChevronDown, Download, Eye, FileText } from "lucide-react";
+import { useRef, useState } from "react";
+import { Modal } from "@/components/Modal";
 
 function Hero() {
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
   const dotsRef = useRef<
     {
       id: number;
@@ -22,6 +25,16 @@ function Hero() {
   );
 
   const dots = dotsRef.current;
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/pdf/cv.pdf";
+    link.download = "Mohamed_Eljihad_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setIsCVModalOpen(false);
+  };
 
   return (
     <Section
@@ -84,10 +97,10 @@ function Hero() {
             </div>
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
+              <Button size="lg" href="#contact">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
+              <AnimatedBorderButton onClick={() => setIsCVModalOpen(true)}>
                 <Download className="w-5 h-5" /> Download CV
               </AnimatedBorderButton>
             </div>
@@ -182,6 +195,66 @@ function Hero() {
           </a>
         </div>
       </div>
+
+      {/* Choice Modal */}
+      <Modal
+        isOpen={isCVModalOpen}
+        onClose={() => setIsCVModalOpen(false)}
+        title="Curriculum Vitae"
+      >
+        <div className="grid gap-6">
+          <div className="flex items-center gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/10">
+            <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+              <FileText className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h4 className="font-semibold">Mohamed Eljihad CV</h4>
+              <p className="text-xs text-muted-foreground">PDF Document • 488 KB</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => {
+                setIsCVModalOpen(false);
+                setIsViewerOpen(true);
+              }}
+              className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group cursor-pointer"
+            >
+              <div className="w-12 h-12 rounded-full bg-surface flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Eye className="w-6 h-6" />
+              </div>
+              <span className="font-medium text-sm">View CV</span>
+            </button>
+
+            <button
+              onClick={handleDownload}
+              className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group cursor-pointer"
+            >
+              <div className="w-12 h-12 rounded-full bg-surface flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Download className="w-6 h-6" />
+              </div>
+              <span className="font-medium text-sm">Download</span>
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Viewer Modal */}
+      <Modal
+        isOpen={isViewerOpen}
+        onClose={() => setIsViewerOpen(false)}
+        title="CV Preview"
+        size="full"
+      >
+        <div className="w-full h-full bg-surface rounded-xl overflow-hidden border border-primary/20 shadow-inner">
+          <iframe
+            src="/pdf/cv.pdf#toolbar=0"
+            className="w-full h-full border-none"
+            title="CV Viewer"
+          />
+        </div>
+      </Modal>
     </Section>
   );
 }
