@@ -17,13 +17,13 @@ export const contactInfo: ContactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+212 6 05 00 08 09",
-    href: "tel:+212605000809",
+    value: "+212 6 22 77 91 76",
+    href: "https://wa.me/212622779176",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Casablanca, Morocco",
-    href: "#",
+    href: "https://www.google.com/maps/place/Casablanca,+Morocco",
   },
 ];

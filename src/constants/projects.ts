@@ -1,21 +1,20 @@
 type Project = {
-  title: string; 
+  title: string;
   description: string;
   image: string;
   tags: string[];
   link: string;
   github: string;
-
-} 
+};
 export const projects: Project[] = [
   {
-    title: "Fintech Dashboard",
+    title: "Coffret à Bijoux – Landing page interactive",
     description:
-      "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
+      "Landing page interactive pour un coffret à bijoux, avec un sélecteur de couleur animé permettant une visualisation en temps réel de la personnalisation.",
     image: "/projects/project1.png",
-    tags: ["React", "Typescript", "NodeJS"],
-    link: "#",
-    github: "#",
+    tags: ["Three.js", "Next.js 16", "TypeScript", "Framer Motion"],
+    link: "https://coffret-bijoux.vercel.app",
+    github: "https://github.com/Mohammed-Eljihad/coffret_bijoux",
   },
   {
     title: "E-Commerce Platform",
