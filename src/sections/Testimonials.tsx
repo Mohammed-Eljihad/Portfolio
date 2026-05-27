@@ -47,13 +47,18 @@ function Testimonials() {
                 <img
                   src={testimonials[activeIdx].avatar}
                   alt={testimonials[activeIdx].author}
-                  className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20" />
+                  className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
 
                 <div className="font-semibold">{testimonials[activeIdx].author}</div>      
                   <div
                     className=" text-sm text-muted-foreground">
-                    {testimonials[0].role}
+                    {testimonials[activeIdx].role}
                   </div>
                 </div>
               </div>

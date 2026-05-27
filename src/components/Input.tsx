@@ -1,13 +1,15 @@
+import type { HTMLInputTypeAttribute, ChangeEvent } from "react";
+
 type InputProps = {
   label: string;
-  type?: React.HTMLInputTypeAttribute;
+  type?: HTMLInputTypeAttribute;
   isRequired?: boolean;
   hint?: string;
   id?: string;
 
   value?: string | number;
   defaultValue?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 
   error?: string;
   disabled?: boolean;

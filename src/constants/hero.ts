@@ -1,21 +1,25 @@
 import { type LucideIcon, Github, Linkedin, Twitter } from "lucide-react";
 
-type social = {
+type Social = {
   icon: LucideIcon;
   href: string;
+  label: string;
 };
-export const socials: social[] = [
+export const socials: Social[] = [
   {
     icon: Github,
     href: "https://github.com/Mohammed-Eljihad",
+    label: "GitHub",
   },
   {
     icon: Linkedin,
-    href: "",
+    href: "https://www.linkedin.com/in/eljihad-mohammed-98a842352",
+    label: "LinkedIn",
   },
   {
     icon: Twitter,
-    href: "#",
+    href: "https://twitter.com/yourhandle",
+    label: "Twitter",
   },
 ];
 

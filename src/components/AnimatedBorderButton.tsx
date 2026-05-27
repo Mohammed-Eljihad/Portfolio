@@ -1,8 +1,8 @@
-import React from "react";
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
 
-type AnimatedBorderButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    children: React.ReactNode;
+type AnimatedBorderButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    children: ReactNode;
     href?: string;
   };
 
@@ -49,14 +49,14 @@ export const AnimatedBorderButton = ({
 
   if (href) {
     return (
-      <a href={href} className={baseClasses} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a href={href} className={baseClasses} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {content}
       </a>
     );
   }
 
   return (
-    <button className={baseClasses} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button className={baseClasses} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {content}
     </button>
   );

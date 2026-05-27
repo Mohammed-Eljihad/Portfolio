@@ -1,9 +1,10 @@
-import React from "react";
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
     size?: "sm" | "default" | "lg";
     href?: string;
+    children?: ReactNode;
   };
 
 const BASE_CLASSES =
@@ -32,14 +33,14 @@ export const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={classes} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a href={href} className={classes} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {content}
       </a>
     );
   }
 
   return (
-    <button className={classes} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button className={classes} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {content}
     </button>
   );

@@ -1,10 +1,11 @@
 import { X } from "lucide-react";
-import React, { useEffect } from "react";
+import type { ReactNode } from "react";
+import { useCallback, useEffect } from "react";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
   title?: string;
   size?: "default" | "lg" | "full";
 };
@@ -21,12 +22,29 @@ export const Modal = ({
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  // Close modal on Escape key
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    },
+    [onClose],
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [isOpen, handleKeyDown]);
 
   if (!isOpen) return null;
 
@@ -37,11 +55,17 @@ export const Modal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={title || "Modal dialog"}
+    >
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-in fade-in duration-300"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Modal Content */}
@@ -56,6 +80,7 @@ export const Modal = ({
           <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all"
+            aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
           </button>

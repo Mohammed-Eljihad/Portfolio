@@ -1,30 +1,23 @@
-/* eslint-disable react-hooks/purity */
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
 import { socials, skills } from "@/constants/hero";
 import { ArrowRight, ChevronDown, Download, Eye, FileText } from "lucide-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Modal } from "@/components/Modal";
+
+/** Stable decorative dots — generated once at module scope, not during render. */
+const dots = Array.from({ length: 30 }, (_, id) => ({
+  id,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  animDuration: 15 + Math.random() * 20,
+  animDelay: Math.random() * 5,
+}));
 
 function Hero() {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const dotsRef = useRef<
-    {
-      id: number;
-      left: number;
-      top: number;
-    }[]
-  >(
-    Array.from({ length: 30 }, (_, id) => ({
-      id,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-    })),
-  );
-
-  const dots = dotsRef.current;
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -44,14 +37,17 @@ function Hero() {
       {/* Background */}
       <img
         src="/hero-bg.jpg"
-        alt="Hero background"
+        alt=""
+        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-40"
+        loading="eager"
+        decoding="async"
       />
 
       <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
 
       {/* Green dots */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {dots.map((dot) => (
           <div
             key={dot.id}
@@ -59,8 +55,8 @@ function Hero() {
             style={{
               left: `${dot.left}%`,
               top: `${dot.top}%`,
-              animation: `slow-drift ${15 + Math.random() * 20}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
+              animation: `slow-drift ${dot.animDuration}s ease-in-out infinite`,
+              animationDelay: `${dot.animDelay}s`,
             }}
           />
         ))}
@@ -106,11 +102,13 @@ function Hero() {
             </div>
             {/* Social */}
             <div className="flex gap-4 items-center animate-fade-in animation-delay-400">
-              {socials.map((social, i) => (
+              {socials.filter(s => s.href).map((social, i) => (
                 <a
                   href={social.href}
                   key={i}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label || "Social link"}
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
                   <social.icon />
@@ -133,8 +131,12 @@ function Hero() {
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
                   src="/profile-photo.jpg"
-                  alt="Mohammed Eljihad"
-                  className="w-full aspect-4/5 object-cover rounded-2xl"
+                  alt="Mohamed Eljihad — Software Engineer"
+                  className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  width="400"
+                  height="500"
+                  loading="eager"
+                  decoding="async"
                 />
 
                 {/* Floating badge   */}

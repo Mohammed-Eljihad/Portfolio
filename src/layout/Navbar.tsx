@@ -22,10 +22,13 @@ function Navbar() {
       setScroll(window.scrollY > 50);
     };
 
-    window.addEventListener("scroll", handlingScroll);
+    // Set initial state
+    handlingScroll();
+
+    window.addEventListener("scroll", handlingScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handlingScroll);
-  });
+  }, []);
 
   return (
     <header
@@ -58,16 +61,19 @@ function Navbar() {
           <Button size="sm">Contact Me</Button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Nav Toggle */}
         <button
           className="md:hidden p-2 text-foreground cursor-pointer"
           onClick={() => setMobileMenu(!isMobileMenu)}
+          aria-expanded={isMobileMenu}
+          aria-controls="mobile-menu"
+          aria-label={isMobileMenu ? "Close navigation menu" : "Open navigation menu"}
         >
           {isMobileMenu ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
       {isMobileMenu && (
-        <div className="md:hidden glass-strong animate-fade-in">
+        <div id="mobile-menu" className="md:hidden glass-strong animate-fade-in" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link, index) => (
               <a

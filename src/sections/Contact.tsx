@@ -4,6 +4,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { Section } from "@/components/Section";
 import emailjs from "@emailjs/browser";
 import { AlertCircle, CheckCircle, Send } from "lucide-react";
+import type { FormEvent } from "react";
 import { useReducer, useState } from "react";
 import { HandleFetching } from "@/utils/handleFetching";
 import { contactInfo } from "@/constants/contact";
@@ -62,7 +63,7 @@ function Contact() {
     [action: InitialSubmitStatus]
   >(reducer, initialSubmitStatus);
 
-  const handlingSubmit = async (e: React.FormEvent) => {
+  const handlingSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
