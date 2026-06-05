@@ -2,8 +2,10 @@ import { lazy, Suspense } from "react";
 import Navbar from "@/layout/Navbar";
 import Hero from "@/sections/Hero";
 import { Footer } from "./layout/Footer";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const About = lazy(() => import("@/sections/About"));
+const Skills = lazy(() => import("@/sections/Skills"));
 const Projects = lazy(() => import("@/sections/Projects"));
 const Experiences = lazy(() => import("@/sections/Experiences"));
 const Testimonials = lazy(() => import("@/sections/Testimonials"));
@@ -23,6 +25,9 @@ function App() {
           <About />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
+          <Skills />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <Projects />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
@@ -36,6 +41,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
