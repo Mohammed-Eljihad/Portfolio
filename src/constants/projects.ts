@@ -9,6 +9,24 @@ type Project = {
 };
 export const projects: Project[] = [
   {
+    title: "The Story Behiind Man",
+    description: "An immersive storytelling landing page that combines cinematic visuals, smooth scroll interactions, and dynamic 3D scenes to create a memorable digital experience centered around the journey and legacy of a modern hero.",
+    image: "/projects/story-man.png",
+    tags: ["Three.js", "Next.js 16", "TypeScript", "Tailwind", "Framer Motion"],
+    link: "https://the-story-behiind-man.vercel.app",
+    github: "https://github.com/Mohammed-Eljihad/the-story-behiind-man",
+    category: "Landing Page",
+  },
+  {
+    title: "Finly",
+    description: "Finly is a modern personal finance management platform that helps users track accounts, transactions, budgets, investments, and goals through a clean, intuitive and data-driven interface.",
+    image: "/projects/finly.png",
+    tags: ["Supabase", "SQL", "Next.js 16", "TypeScript", "Tailwind", "Framer Motion"],
+    link: "https://finly-ten-pink.vercel.app/",
+    github: "https://github.com/Mohammed-Eljihad/finly",
+    category: "SaaS",
+  },
+  {
     title: "Coffret à Bijoux – Landing page interactive",
     description:
       "Landing page interactive pour un coffret à bijoux, avec un sélecteur de couleur animé permettant une visualisation en temps réel de la personnalisation.",
