@@ -9,7 +9,7 @@ import {
 import { 
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiFramer,
   SiNodedotjs, SiExpress, SiPython, SiFastapi, SiDjango, SiPhp, SiPostgresql, SiMysql, SiMongodb,
-  SiDart, SiFlutter, SiFigma
+  SiDart, SiFlutter, SiFigma, SiWordpress
 } from "react-icons/si";
 import { FaDatabase, FaSearch } from "react-icons/fa";
 
@@ -42,6 +42,7 @@ const skillCategories = [
       { name: "FastAPI", icon: SiFastapi },
       { name: "Django", icon: SiDjango },
       { name: "PHP", icon: SiPhp },
+      { name: "WordPress", icon: SiWordpress },
       { name: "SQL", icon: FaDatabase },
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "MySQL", icon: SiMysql },
